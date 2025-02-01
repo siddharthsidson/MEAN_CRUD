@@ -30,14 +30,12 @@ export class AppComponent {
   getUsers(){
     this.userService.getUsers().subscribe(result=>{
       this.users = result;
-      console.log(this.users);
     })
   }
   addUser(){
     if(this.userForm.valid){
       console.log(this.userForm.value);
       const model:User = this.userForm.value;
-      console.log(model);
       this.userService.addUser(model).subscribe(result=>{
         console.log('user added successfully');
         this.userForm.reset();

@@ -1,7 +1,6 @@
 const User = require("../user");
 
 async function addUser(userModel) {
-  console.log(userModel);
   let user = new User({
     ...userModel,
   });
