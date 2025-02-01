@@ -15,4 +15,7 @@ async function getUser(id) {
   const user = await User.findById(id);
   return user.toObject();
 }
-module.exports = { addUser, getUsers, getUser };
+async function deleteUser(id) {
+    await User.findByIdAndDelete(id);
+  }
+module.exports = { addUser, getUsers, getUser, deleteUser };

@@ -24,7 +24,7 @@
             <td>
               <button class="btn btn-warning me-2">
                 <i class="fa-solid fa-pen-to-square"></i></button
-              ><button class="btn btn-danger">
+              ><button class="btn btn-danger" (click)="deleteUser(user._id)" >
                 <i class="fa-solid fa-trash"></i>
               </button>
             </td>
@@ -34,7 +34,7 @@
     </div>
   </div>
   <div class="col-4 my-5 px-3">
-    <h1 class="text-center">Add</h1>
+    <h2 class="text-center">Add User</h2>
     <div class="d-flex justify-content-center w-100">
       <form class="w-100" [formGroup]="userForm" (ngSubmit)="addUser()">
         <div class="mb-3">

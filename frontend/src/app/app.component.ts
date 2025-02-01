@@ -43,5 +43,10 @@ export class AppComponent {
       })
     }
   }
-
+deleteUser(id:any){
+  this.userService.deleteUser(id).subscribe(result=>{
+    console.log('user deleted successfully');
+    this.getUsers();
+  })
+}
 }
