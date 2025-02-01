@@ -3,11 +3,12 @@ import { RouterOutlet } from '@angular/router';
 import User from './types/user';
 import { UserService } from './services/user.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,ReactiveFormsModule],
+  imports: [CommonModule, RouterOutlet,ReactiveFormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -24,6 +25,9 @@ export class AppComponent {
     password : ['',[Validators.required]]
   })
   ngOnInit(){
+    this.getUsers();
+  }
+  getUsers(){
     this.userService.getUsers().subscribe(result=>{
       this.users = result;
       console.log(this.users);
@@ -36,6 +40,8 @@ export class AppComponent {
       console.log(model);
       this.userService.addUser(model).subscribe(result=>{
         console.log('user added successfully');
+        this.userForm.reset();
+        this.getUsers();
       })
     }
   }

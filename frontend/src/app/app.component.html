@@ -1,25 +1,90 @@
-<div class="d-flex justify-content-center w-100">
-  <form class="w-25" [formGroup] = "userForm" (ngSubmit)="addUser()">
-    <div class="mb-3">
-      <label for="userName" class="form-label">Name</label>
-      <input type="text" class="form-control" id="userName" formControlName="name" />
+<div class="row mx-0">
+  <div class="col-8 d-flex align-items-center justify-content-center px-3">
+    <div class="w-100">
+      <table class="table table-bordered table-light">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Age</th>
+            <th scope="col">Address</th>
+            <th scope="col">Password</th>
+            <th scope="col">Edit/Update</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.age }}</td>
+            <td>{{ user.address }}</td>
+            <td>{{ user.password }}</td>
+            <td>
+              <button class="btn btn-warning me-2">
+                <i class="fa-solid fa-pen-to-square"></i></button
+              ><button class="btn btn-danger">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="mb-3">
-      <label for="userEmail" class="form-label">Email</label>
-      <input type="email" class="form-control" id="userEmail" formControlName="email" />
+  </div>
+  <div class="col-4 my-5 px-3">
+    <h1 class="text-center">Add</h1>
+    <div class="d-flex justify-content-center w-100">
+      <form class="w-100" [formGroup]="userForm" (ngSubmit)="addUser()">
+        <div class="mb-3">
+          <label for="userName" class="form-label">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="userName"
+            formControlName="name"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="userEmail" class="form-label">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="userEmail"
+            formControlName="email"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="userAge" class="form-label">Age</label>
+          <input
+            type="text"
+            class="form-control"
+            id="userAge"
+            formControlName="age"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="userAddress" class="form-label">Address</label>
+          <textarea
+            type="text"
+            class="form-control"
+            id="userAddress"
+            rows="3"
+            formControlName="address"
+          ></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="userPassword" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="userPassword"
+            formControlName="password"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
     </div>
-    <div class="mb-3">
-      <label for="userAge" class="form-label">Age</label>
-      <input type="text" class="form-control" id="userAge" formControlName="age" />
-    </div>
-    <div class="mb-3">
-      <label for="userAddress" class="form-label">Address</label>
-      <textarea type="text" class="form-control" id="userAddress" rows="3" formControlName="address" ></textarea>
-    </div>
-    <div class="mb-3">
-      <label for="userPassword" class="form-label">Password</label>
-      <input type="password" class="form-control" id="userPassword" formControlName="password" />
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+  </div>
 </div>
