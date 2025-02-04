@@ -1,6 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const {addUser,getUsers,getUser,deleteUser} = require("../handlers/userHandle");
+const {
+  addUser,
+  getUsers,
+  getUser,
+  deleteUser,
+} = require("../handlers/userHandle");
 
 router.post("/addUser", async (req, res) => {
   console.log(req.body);
@@ -19,7 +24,7 @@ router.get("/getUser/:id", async (req, res) => {
 });
 
 router.delete("/deleteUser/:id", async (req, res) => {
-  await deleteUser(req.params[id]);
+  await deleteUser(req.params["id"]);
   res.send();
 });
 
