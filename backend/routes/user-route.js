@@ -3,8 +3,8 @@ const router = express.Router();
 const {
   addUser,
   getUsers,
-  getUser,
   deleteUser,
+  updateUser,
 } = require("../handlers/userHandle");
 
 router.post("/addUser", async (req, res) => {
@@ -13,13 +13,13 @@ router.post("/addUser", async (req, res) => {
   res.send(user);
 });
 
-router.get("/getUsers", async (req, res) => {
-  let users = await getUsers();
-  res.send(users);
+router.purge("/updateUser/:id", async (req, res) => {
+  await updateUser(req.params["id"], req.body);
+  res.send();
 });
 
-router.get("/getUser/:id", async (req, res) => {
-  let users = await getUser(req.params[id]);
+router.get("/getUsers", async (req, res) => {
+  let users = await getUsers(req.params["id"]);
   res.send(users);
 });
 

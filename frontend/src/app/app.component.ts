@@ -21,8 +21,9 @@ export class AppComponent {
   users: User[] = [];
   userService = inject(UserService);
   formBuilder = inject(FormBuilder);
-  submitIsActive : boolean = true;
-  updateIsActive : boolean = false;
+  submitIsActive: boolean = true;
+  updateIsActive: boolean = false;
+  selectedId: any;
 
   userForm: FormGroup = this.formBuilder.group({
     name: ['', [Validators.required]],
@@ -41,7 +42,6 @@ export class AppComponent {
   }
   addUser() {
     if (this.userForm.valid) {
-      console.log(this.userForm.value);
       const model: User = this.userForm.value;
       this.userService.addUser(model).subscribe((result) => {
         console.log('user added successfully');
@@ -51,9 +51,12 @@ export class AppComponent {
     }
   }
   editUser(id: any) {
+    this.submitIsActive = false;
+    this.updateIsActive = true;
     let selectedUser = this.users.filter((item: any) => {
       return item._id == id;
     });
+    this.selectedId = selectedUser[0]._id;
     this.userForm.setValue({
       name: selectedUser[0].name,
       email: selectedUser[0].email,
@@ -61,6 +64,20 @@ export class AppComponent {
       address: selectedUser[0].address,
       password: selectedUser[0].password,
     });
+  }
+  updateUser() {
+    const model: User = this.userForm.value;
+    if (this.userForm.valid) {
+      this.userService
+        .updateUser(this.selectedId, model)
+        .subscribe((result) => {
+          console.log('user updated successfully');
+          this.userForm.reset();
+          this.submitIsActive = true;
+          this.updateIsActive = false;
+          this.getUsers();
+        });
+    }
   }
   deleteUser(id: any) {
     this.userService.deleteUser(id).subscribe((result) => {

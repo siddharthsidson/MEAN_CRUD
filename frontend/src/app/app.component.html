@@ -39,7 +39,7 @@
   <div class="col-4 my-5 px-3">
     <h2 class="text-center">Add User</h2>
     <div class="d-flex justify-content-center w-100">
-      <form class="w-100" [formGroup]="userForm" (ngSubmit)="addUser()">
+      <form class="w-100" [formGroup]="userForm">
         <div class="mb-3">
           <label for="userName" class="form-label">Name</label>
           <input
@@ -86,10 +86,18 @@
             formControlName="password"
           />
         </div>
-        <button *ngIf="submitIsActive" type="submit" class="btn btn-primary">
+        <button
+          *ngIf="submitIsActive"
+          class="btn btn-primary"
+          (click)="addUser()"
+        >
           Submit
         </button>
-        <button *ngIf="updateIsActive" type="submit" class="btn btn-primary">
+        <button
+          *ngIf="updateIsActive"
+          class="btn btn-primary"
+          (click)="updateUser()"
+        >
           Update
         </button>
       </form>
