@@ -1,43 +1,6 @@
 <div class="row mx-0">
-  <div class="col-8 d-flex align-items-center justify-content-center px-3">
-    <div class="w-100">
-      <table class="table table-bordered table-light">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Age</th>
-            <th scope="col">Address</th>
-            <th scope="col">Password</th>
-            <th scope="col">Edit/Update</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let user of users; let i = index">
-            <th scope="row">{{ i + 1 }}</th>
-            <td>{{ user.name }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.age }}</td>
-            <td>{{ user.address }}</td>
-            <td>{{ user.password }}</td>
-            <td>
-              <button class="btn btn-warning me-2">
-                <i
-                  class="fa-solid fa-pen-to-square"
-                  (click)="editUser(user._id)"
-                ></i></button
-              ><button class="btn btn-danger" (click)="deleteUser(user._id)">
-                <i class="fa-solid fa-trash"></i>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <div class="col-4 my-5 px-3">
-    <h2 class="text-center">Add User</h2>
+  <div class="col-4 mx-5 my-3 px-3 border border-2 border-secondary rounded">
+    <h2 class="text-center mt-3">Registration</h2>
     <div class="d-flex justify-content-center w-100">
       <form class="w-100" [formGroup]="userForm">
         <div class="mb-3">
@@ -86,21 +49,57 @@
             formControlName="password"
           />
         </div>
-        <button
-          *ngIf="submitIsActive"
-          class="btn btn-primary"
-          (click)="addUser()"
-        >
-          Submit
-        </button>
-        <button
-          *ngIf="updateIsActive"
-          class="btn btn-primary"
-          (click)="updateUser()"
-        >
-          Update
-        </button>
+        <div class="d-flex justify-content-center mb-3">
+          <button
+            *ngIf="submitIsActive"
+            class="btn btn-primary"
+            (click)="addUser()"
+          >
+            Submit
+          </button>
+          <button
+            *ngIf="updateIsActive"
+            class="btn btn-primary"
+            (click)="updateUser()"
+          >
+            Update
+          </button>
+        </div>
       </form>
+    </div>
+  </div>
+  <div class="col-7 d-flex align-items-center justify-content-center p-3">
+    <div class="w-100 h-100">
+      <table class="table table-bordered table-light">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Age</th>
+            <th scope="col">Address</th>
+            <th scope="col">Password</th>
+            <th scope="col">Edit/Update</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.age }}</td>
+            <td>{{ user.address }}</td>
+            <td>{{ user.password }}</td>
+            <td>
+              <button class="btn btn-warning me-2" (click)="editUser(user._id)">
+                <i class="fa-solid fa-pen-to-square"></i></button
+              ><button class="btn btn-danger" (click)="deleteUser(user._id)">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

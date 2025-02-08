@@ -13,7 +13,7 @@ router.post("/addUser", async (req, res) => {
   res.send(user);
 });
 
-router.purge("/updateUser/:id", async (req, res) => {
+router.put("/updateUser/:id", async (req, res) => {
   await updateUser(req.params["id"], req.body);
   res.send();
 });
